@@ -1,4 +1,4 @@
-// lirc_web - v0.0.8
+// lirc_web - v0.0.7
 // Alex Bain <alex@alexba.in>
 
 // Requirements
@@ -10,7 +10,8 @@ var express = require('express'),
 
 // Precompile templates
 var JST = {
-    index: swig.compileFile(__dirname + '/templates/index.swig')
+    index: swig.compileFile(__dirname + '/templates/index.swig'),
+    karaoke: swig.compileFile(__dirname + '/templates/karaoke.swig')
 };
 
 // Create app
@@ -45,10 +46,6 @@ if (process.env.NODE_ENV == 'test' || process.env.NODE_ENV == 'development') {
     }
 }
 
-
-// Routes
-
-
 // Web UI
 app.get('/', function(req, res) {
     res.send(JST['index'].render({
@@ -57,6 +54,15 @@ app.get('/', function(req, res) {
         repeaters: config.repeaters
     }));
 });
+
+app.get('/karaoke', function(req, res) {
+    res.send(JST['karaoke'].render({
+        remotes: lirc_node.remotes,
+        macros: config.macros,
+        repeaters: config.repeaters
+    }));
+});
+
 
 // List all remotes in JSON format
 app.get('/remotes.json', function(req, res) {
@@ -115,7 +121,7 @@ app.post('/macros/:macro', function(req, res) {
     // delay between each command.
     if (config.macros && config.macros[req.params.macro]) {
         var i = 0;
-        var intervalFunc = function() {
+        var interval = function() {
             if (config.macros[req.params.macro][i]) {
                 var command = config.macros[req.params.macro][i];
                 lirc_node.irsend.send_once(command[0], command[1], function() {});
@@ -126,7 +132,7 @@ app.post('/macros/:macro', function(req, res) {
             i += 1;
         };
 
-        var interval = setInterval(intervalFunc, 100);
+        setInterval(interval, 100);
     }
 
     res.setHeader('Cache-Control', 'no-cache');

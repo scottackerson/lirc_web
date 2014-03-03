@@ -1,11 +1,12 @@
 {
-  "Yamaha": [
-    "Power",
-    "Xbox360",
-    "Wii",
-    "VolumeUp",
-    "VolumeDown",
-    "DTV/CBL"
+  "Karaoke": [
+    "0",
+    "1",
+    "2",
+    "3",
+    "4",
+    "5",
+    "6"
   ],
   "SonyTV": [
     "Power",
