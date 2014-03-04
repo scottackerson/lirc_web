@@ -11,7 +11,8 @@ var express = require('express'),
 // Precompile templates
 var JST = {
     index: swig.compileFile(__dirname + '/templates/index.swig'),
-    karaoke: swig.compileFile(__dirname + '/templates/karaoke.swig')
+    karaoke: swig.compileFile(__dirname + '/templates/karaoke.swig'),
+    karaoketest: swig.compileFile(__dirname + '/templates/karaoke-test.swig')
 };
 
 // Create app
@@ -63,6 +64,13 @@ app.get('/karaoke', function(req, res) {
     }));
 });
 
+app.get('/karaoketest', function(req, res) {
+    res.send(JST['karaoketest'].render({
+        remotes: lirc_node.remotes,
+        macros: config.macros,
+        repeaters: config.repeaters
+    }));
+});
 
 // List all remotes in JSON format
 app.get('/remotes.json', function(req, res) {
