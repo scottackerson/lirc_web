@@ -27,7 +27,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">R</a>
+          <a class="navbar-brand" href="/">Karaoke</a>
         </div>
         <div class="navbar-collapse collapse" style="height: 1px;">
           <ul class="nav navbar-nav">
@@ -39,7 +39,7 @@
       </div>
     </div>
 
-    <div style="width: 400px;">
+    <div style="width: 600px;">
       <div class="row">  
         <button class="col-xs-2 col-md-2 {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-large btn-default" href="/remotes/karaoke/1">1</button>
         <button class="col-xs-2 col-md-2 {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-large btn-default" href="/remotes/karaoke/2">2</button>
@@ -59,11 +59,26 @@
       </div>
 
       <div class="row">  
-        <button class="col-xs-2 col-md-2 {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-large btn-info" href="/remotes/karaoke/0">P</button>
+        <button class="col-xs-2 col-md-2 {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-large btn-info" href="/remotes/karaoke/KEY_PLAY">P</button>
         <button class="col-xs-2 col-md-2 {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-large btn-default" href="/remotes/karaoke/0">0</button>
-        <button class="col-xs-2 col-md-2 {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-large btn-info" href="/remotes/karaoke/0">||</button>
+        <button class="col-xs-2 col-md-2 {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-large btn-info" href="/remotes/karaoke/KEY_PAUSE">||</button>
       </div>
-    </div>      
+      
+      <p>
+
+      <div class="row">
+        <button class="col-xs-2 col-md-2 {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-large btn-default" href="/remotes/receiver/KEY_VOLUMEDOWN"><span class="glyphicon glyphicon-volume-down"></span></button>
+        <button class="col-xs-2 col-md-2 col-md-offset-2 col-xs-offset-2 {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-large btn-default" href="/remotes/receiver/KEY_VOLUMEUP"><span class="glyphicon glyphicon-volume-up"></span></button>
+      </div>
+      
+      <p>
+
+      <div class="row">
+        <button class="col-xs-2 col-md-2 {% if repeaters[remoteName][command] %}command-repeater{% else %}command-once{% endif %} btn btn-large btn-default" href="/remotes/karaoke/KEY_AGAIN">USB</button>
+      </div>
+    </div>   
+
+
 
 
     <script src="js/compiled/app.js" type="text/javascript" charset="utf-8"></script>
