@@ -120,7 +120,7 @@ app.post('/macros/:macro', function(req, res) {
 
     // If the macro exists, execute each command in the macro with 100msec
     // delay between each command.
-    if (config.macros && config.macros[req.params.macro]) {cd 
+    if (config.macros && config.macros[req.params.macro]) {
         var i = 0;
         var interval = function() {
             if (config.macros[req.params.macro][i]) {
@@ -141,9 +141,25 @@ app.post('/macros/:macro', function(req, res) {
 });
 
 // Parse the post into several remote signals
-app.post('/test', function(req, res) {
+app.post('/commands', function(req, res) {
     //read the post, parse it into several commands to be sent to lirc_node
-    console.log(req.body.commands);
+    console.log("sending " + req.body.commands);
+    if (req.body.commands) { 
+        var i = 0;
+        var interval = function() {
+            if (req.body.commands[i]) {
+                var command = req.body.commands[i];
+                lirc_node.irsend.send_once(command[0], command[1], function() {});
+                console.log("sent " + command[0])
+            } else {
+                clearInterval(interval);
+            }
+
+            i += 1;
+        };
+
+        setInterval(interval, 100);
+    }
     res.setHeader('Cache-Control', 'no-cache');
     res.send(204);
 });

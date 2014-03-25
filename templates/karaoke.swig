@@ -34,7 +34,7 @@
   <body ontouchstart="">
     <div id="container">
 
-    <form method="post" action="/test">
+    <form method="post" action="/commands/">
         <input type="text" pattern="\d*" name="commands">
         <input type="submit">
     </form>
