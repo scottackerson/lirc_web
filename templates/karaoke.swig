@@ -17,11 +17,28 @@
       body { background: #47454b; }
     </style>
 
+  <script>
+  $("form").submit(function(e) {
+      e.preventDefault(); // Prevents the page from refreshing
+      var $this = $(this); // `this` refers to the current form element
+      $.post(
+          $this.attr("action"), // Gets the URL to sent the post to
+          $this.serialize(), // Serializes form data in standard format
+          function(data) { /** code to handle response **/ },
+          "json" // The format the response should be in
+      );
+  });
+  </script>
   </head>
 
   <body ontouchstart="">
     <div id="container">
 
+    <form method="post" action="/test">
+        <input type="text" pattern="\d*" name="commands">
+        <input type="submit">
+    </form>
+    <p>
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -79,7 +96,7 @@
       </div>
       <div class="btn-group btn-group-justified">
         <div class="btn-group">
-          <button type="button" class="btn btn-default command-once" href="/remotes/karaoke/KEY_PAUSE">Play/Pause</button>
+          <button type="button" class="btn btn-default command-once" href="/remotes/karaoke/KEY_PAUSE">Play</button>
         </div>
         <div class="btn-group">
           <button type="button" class="btn btn-default command-once" href="/remotes/karaoke/0">0</button>
@@ -100,13 +117,15 @@
       <p>
       <div class="btn-group btn-group-justified">
         <div class="btn-group">
-          <button class="btn btn-default command-once" href="/remotes/karaoke/KEY_AGAIN">USB</button>
+          <button class="btn btn-default command-once" href="/remotes/karaoke/KEY_AGAIN">USB!</button>
         </div> 
         <div class="btn-group">
-          <button class="btn btn-default command-once" href="/remotes/karaoke/KEY_DISPLAY">GUI Toggle</button>
+          <button class="btn btn-default command-once" href="/remotes/karaoke/group">GUI Toggle</button>
         </div>  
       </div>
     </div>
+    <p>
+
 
     <script src="js/compiled/app.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>

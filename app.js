@@ -11,8 +11,7 @@ var express = require('express'),
 // Precompile templates
 var JST = {
     index: swig.compileFile(__dirname + '/templates/index.swig'),
-    karaoke: swig.compileFile(__dirname + '/templates/karaoke.swig'),
-    karaoketest: swig.compileFile(__dirname + '/templates/karaoke-test.swig')
+    karaoke: swig.compileFile(__dirname + '/templates/karaoke.swig')
 };
 
 // Create app
@@ -26,6 +25,7 @@ app.configure(function() {
     app.set('view engine', 'jade');
     app.use(express.compress());
     app.use(express.static(__dirname + '/static'));
+    app.use(express.bodyParser()); 
 });
 
 // lirc_web configuration
@@ -49,7 +49,7 @@ if (process.env.NODE_ENV == 'test' || process.env.NODE_ENV == 'development') {
 
 // Web UI
 app.get('/', function(req, res) {
-    res.send(JST['index'].render({
+    res.send(JST['karaoke'].render({
         remotes: lirc_node.remotes,
         macros: config.macros,
         repeaters: config.repeaters
@@ -58,14 +58,6 @@ app.get('/', function(req, res) {
 
 app.get('/karaoke', function(req, res) {
     res.send(JST['karaoke'].render({
-        remotes: lirc_node.remotes,
-        macros: config.macros,
-        repeaters: config.repeaters
-    }));
-});
-
-app.get('/karaoketest', function(req, res) {
-    res.send(JST['karaoketest'].render({
         remotes: lirc_node.remotes,
         macros: config.macros,
         repeaters: config.repeaters
@@ -103,6 +95,7 @@ app.get('/macros/:macro.json', function(req, res) {
 
 // Send :remote/:command one time
 app.post('/remotes/:remote/:command', function(req, res) {
+
     lirc_node.irsend.send_once(req.params.remote, req.params.command, function() {});
     res.setHeader('Cache-Control', 'no-cache');
     res.send(200);
@@ -127,7 +120,7 @@ app.post('/macros/:macro', function(req, res) {
 
     // If the macro exists, execute each command in the macro with 100msec
     // delay between each command.
-    if (config.macros && config.macros[req.params.macro]) {
+    if (config.macros && config.macros[req.params.macro]) {cd 
         var i = 0;
         var interval = function() {
             if (config.macros[req.params.macro][i]) {
@@ -147,6 +140,13 @@ app.post('/macros/:macro', function(req, res) {
     res.send(200);
 });
 
+// Parse the post into several remote signals
+app.post('/test', function(req, res) {
+    //read the post, parse it into several commands to be sent to lirc_node
+    console.log(req.body.commands);
+    res.setHeader('Cache-Control', 'no-cache');
+    res.send(204);
+});
 
 // Default port is 3000
 app.listen(3000);
