@@ -174,7 +174,7 @@ app.post('/songnumber', function(req, res) {
         setInterval(interval, 200);
     }
     res.setHeader('Cache-Control', 'no-cache');
-    res.redirect('/'); //need to redirect from request origination.
+    res.redirect('/bysongnumber'); //need to redirect from request origination.
 });
 
 // Default port is 3000

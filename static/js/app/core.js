@@ -112,5 +112,9 @@ $(function() {
     // Remove 300ms delay after tapping
     OSUR.fastClick = new FastClick(document.body);
 
+    //keep inside web app (safari)
+    $.stayInWebApp();
+
+
 });
 

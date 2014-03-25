@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="css/add2home.css">
     <script type="application/javascript" src="js/add2home.js"></script>
-    
+
     <style type="text/css">
       body { background: #47454b; }
     </style>
@@ -113,6 +113,14 @@
     <script src="js/compiled/app.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script type="application/javascript" src="js/stayInWebApp.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $(function() {
+            $.stayInWebApp();
+        });
+      });
+    </script>
 
   </body>
 </html>
