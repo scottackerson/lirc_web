@@ -41,15 +41,19 @@
       </div>
     </div>
 
-    
-
     <div id="container">
       <div class="keypad">
-        <div class="list-group">
-          <a href="/bysongnumber" class="list-group-item">Enter by song number</a>
-          <a href="/byartist" class="list-group-item">Find song by artist</a>
-          <a href="/karaokeremote" class="list-group-item">Karaoke system remote</a>
+    
+        <div class="panel panel-primary">
+          <div class="panel-heading">Song Number</div>
+          <div class="panel-body">
+            <form method="post" action="/songnumber/">
+                <input type="text" pattern="\d*" name="songnumber" maxlength="4">
+                <input type="submit">
+            </form>
+          </div>  
         </div>
+
         <div class="btn-group btn-group-justified">
           <div class="btn-group">
             <button type="button" class="btn btn-default command-once" href="/remotes/karaoke/KEY_PAUSE">Play</button>
@@ -80,7 +84,7 @@
           </div>  
         </div>
     </div>
-    
+
     <script src="js/compiled/app.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>

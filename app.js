@@ -1,5 +1,4 @@
-// lirc_web - v0.0.7
-// Alex Bain <alex@alexba.in>
+// Based off of lirc_web by Alex Bain <alex@alexba.in>
 
 // Requirements
 var express = require('express'),
@@ -11,7 +10,9 @@ var express = require('express'),
 // Precompile templates
 var JST = {
     index: swig.compileFile(__dirname + '/templates/index.swig'),
-    karaoke: swig.compileFile(__dirname + '/templates/karaoke.swig')
+    karaokeremote: swig.compileFile(__dirname + '/templates/karaokeremote.swig'),
+    bysongnumber: swig.compileFile(__dirname + '/templates/bysongnumber.swig'),
+    byartist: swig.compileFile(__dirname + '/templates/index.swig')
 };
 
 // Create app
@@ -49,20 +50,37 @@ if (process.env.NODE_ENV == 'test' || process.env.NODE_ENV == 'development') {
 
 // Web UI
 app.get('/', function(req, res) {
-    res.send(JST['karaoke'].render({
-        remotes: lirc_node.remotes,
-        macros: config.macros,
-        repeaters: config.repeaters
-    }));
-});
-
-app.get('/karaoke', function(req, res) {
     res.send(JST['index'].render({
         remotes: lirc_node.remotes,
         macros: config.macros,
         repeaters: config.repeaters
     }));
 });
+
+app.get('/bysongnumber', function(req, res) {
+    res.send(JST['bysongnumber'].render({
+        remotes: lirc_node.remotes,
+        macros: config.macros,
+        repeaters: config.repeaters
+    }));
+});
+
+app.get('/karaokeremote', function(req, res) {
+    res.send(JST['karaokeremote'].render({
+        remotes: lirc_node.remotes,
+        macros: config.macros,
+        repeaters: config.repeaters
+    }));
+});
+
+app.get('/byartist', function(req, res) {
+    res.send(JST['byartist'].render({
+        remotes: lirc_node.remotes,
+        macros: config.macros,
+        repeaters: config.repeaters
+    }));
+});
+
 
 // List all remotes in JSON format
 app.get('/remotes.json', function(req, res) {

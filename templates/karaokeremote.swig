@@ -21,16 +21,7 @@
 
   <body ontouchstart="">
     <div id="container">
-    <div class="panel panel-primary">
-      <div class="panel-heading">Song Number</div>
-        <div class="panel-body">
-          <form method="post" action="/songnumber/">
-              <input type="text" pattern="\d*" name="songnumber">
-              <input type="submit">
-          </form>
-        </div>  
-    </div>
-    <p>
+
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
@@ -44,9 +35,9 @@
         </div>
         <div class="navbar-collapse collapse" style="height: 1px;">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="#">Karaoke</a></li>
-            <li><a href="/Karaoke">Receiver</a></li>
-            <li><a href="/Karaoke">TV</a></li>
+            <li><a href="/bysongnumber">By Song Number</a></li>
+            <li><a href="/">By Artist</a></li>
+            <li><a href="/karaokeremote">Karaoke Remote</a></li>
           </ul>
         </div>
       </div>
