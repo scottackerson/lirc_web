@@ -17,27 +17,19 @@
       body { background: #47454b; }
     </style>
 
-  <script>
-  $("form").submit(function(e) {
-      e.preventDefault(); // Prevents the page from refreshing
-      var $this = $(this); // `this` refers to the current form element
-      $.post(
-          $this.attr("action"), // Gets the URL to sent the post to
-          $this.serialize(), // Serializes form data in standard format
-          function(data) { /** code to handle response **/ },
-          "json" // The format the response should be in
-      );
-  });
-  </script>
   </head>
 
   <body ontouchstart="">
     <div id="container">
-
-    <form method="post" action="/commands/">
-        <input type="text" pattern="\d*" name="commands">
-        <input type="submit">
-    </form>
+    <div class="panel panel-primary">
+      <div class="panel-heading">Song Number</div>
+        <div class="panel-body">
+          <form method="post" action="/songnumber/">
+              <input type="text" pattern="\d*" name="songnumber">
+              <input type="submit">
+          </form>
+        </div>  
+    </div>
     <p>
     <div class="navbar navbar-default navbar-fixed-top">
       <div class="container">

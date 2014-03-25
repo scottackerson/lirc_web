@@ -57,7 +57,7 @@ app.get('/', function(req, res) {
 });
 
 app.get('/karaoke', function(req, res) {
-    res.send(JST['karaoke'].render({
+    res.send(JST['index'].render({
         remotes: lirc_node.remotes,
         macros: config.macros,
         repeaters: config.repeaters
@@ -129,39 +129,34 @@ app.post('/macros/:macro', function(req, res) {
             } else {
                 clearInterval(interval);
             }
-
             i += 1;
         };
-
         setInterval(interval, 100);
+    } else {
     }
-
+    console.log("done");
     res.setHeader('Cache-Control', 'no-cache');
     res.send(200);
 });
 
 // Parse the post into several remote signals
-app.post('/commands', function(req, res) {
+app.post('/songnumber', function(req, res) {
     //read the post, parse it into several commands to be sent to lirc_node
-    console.log("sending " + req.body.commands);
-    if (req.body.commands) { 
+    if (req.body.songnumber) { 
         var i = 0;
         var interval = function() {
-            if (req.body.commands[i]) {
-                var command = req.body.commands[i];
-                lirc_node.irsend.send_once(command[0], command[1], function() {});
-                console.log("sent " + command[0])
+            if (req.body.songnumber[i]) {
+                var command = req.body.songnumber[i];
+                lirc_node.irsend.send_once('karaoke', command[0], function() {});
             } else {
                 clearInterval(interval);
             }
-
             i += 1;
         };
-
-        setInterval(interval, 100);
+        setInterval(interval, 200);
     }
     res.setHeader('Cache-Control', 'no-cache');
-    res.send(204);
+    res.redirect('/'); //need to redirect from request origination.
 });
 
 // Default port is 3000
