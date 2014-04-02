@@ -12,7 +12,7 @@ var JST = {
     index: swig.compileFile(__dirname + '/templates/index.swig'),
     karaokeremote: swig.compileFile(__dirname + '/templates/karaokeremote.swig'),
     bysongnumber: swig.compileFile(__dirname + '/templates/bysongnumber.swig'),
-    byartist: swig.compileFile(__dirname + '/templates/index.swig')
+    byartist: swig.compileFile(__dirname + '/templates/byartist.swig')
 };
 
 // Create app
@@ -47,6 +47,21 @@ if (process.env.NODE_ENV == 'test' || process.env.NODE_ENV == 'development') {
         console.log("WARNING: Cannot find config.json!");
     }
 }
+// Load song list
+var csv = require("fast-csv");
+var songs = [];
+
+csv
+.fromPath("songs.csv", {
+    headers : ["track", "artist", "title"],
+    ignoreEmpty: true
+})
+.on("record", function(data){
+    songs.push(data);
+})
+.on("end", function(){
+ console.log("Loaded " + songs.length + " songs");
+ });
 
 // Web UI
 app.get('/', function(req, res) {
@@ -74,10 +89,15 @@ app.get('/karaokeremote', function(req, res) {
 });
 
 app.get('/byartist', function(req, res) {
+    console.log(songs);
+    //console.log(config.macros);
+    //console.log(config.repeaters);
+    //console.log(lirc_node.remotes);    
     res.send(JST['byartist'].render({
         remotes: lirc_node.remotes,
         macros: config.macros,
-        repeaters: config.repeaters
+        repeaters: config.repeaters,
+        songs: songs
     }));
 });
 
@@ -152,7 +172,28 @@ app.post('/macros/:macro', function(req, res) {
         setInterval(interval, 100);
     } else {
     }
-    console.log("done");
+    res.setHeader('Cache-Control', 'no-cache');
+    res.send(200);
+});
+
+// Parse the post into several remote signals
+app.post('/byartist/:track', function(req, res) {
+    //read the post, parse it into several commands to be sent to lirc_node
+    console.log(req.params);
+    if (req.params.track) { 
+        var i = 0;
+        var interval = function() {
+            if (req.params.track[i]) {
+                var command = req.params.track[i];
+                lirc_node.irsend.send_once('karaoke', command[0], function() {});
+                console.log("Sent " + command);
+            } else {
+                clearInterval(interval);
+            }
+            i += 1;
+        };
+        setInterval(interval, 200);
+    }
     res.setHeader('Cache-Control', 'no-cache');
     res.send(200);
 });
@@ -166,6 +207,7 @@ app.post('/songnumber', function(req, res) {
             if (req.body.songnumber[i]) {
                 var command = req.body.songnumber[i];
                 lirc_node.irsend.send_once('karaoke', command[0], function() {});
+                console.log("Sent " + command);
             } else {
                 clearInterval(interval);
             }
@@ -176,6 +218,7 @@ app.post('/songnumber', function(req, res) {
     res.setHeader('Cache-Control', 'no-cache');
     res.redirect('/bysongnumber'); //need to redirect from request origination.
 });
+
 
 // Default port is 3000
 app.listen(3000);

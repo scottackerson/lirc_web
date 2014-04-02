@@ -34,7 +34,7 @@
         <div class="navbar-collapse collapse" style="height: 1px;">
           <ul class="nav navbar-nav">
             <li><a href="/bysongnumber">By Song Number</a></li>
-            <li><a href="/">By Artist</a></li>
+            <li><a href="/byartist">By Artist</a></li>
             <li><a href="/karaokeremote">Karaoke Remote</a></li>
           </ul>
         </div>
@@ -88,7 +88,7 @@
     <script src="js/compiled/app.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-    key<script type="application/javascript" src="js/stayInWebApp.js"></script>
+    <script type="application/javascript" src="js/stayInWebApp.js"></script>
     <script type="text/javascript">
       $(document).ready(function() {
         $(function() {
