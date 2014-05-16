@@ -4,4 +4,6 @@ node_modules/
 .project
 .settings/
 songs.csv
-
+/data/backup
+/data/*.log
+/data/*.db

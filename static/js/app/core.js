@@ -115,6 +115,5 @@ $(function() {
     //keep inside web app (safari)
     $.stayInWebApp();
 
-
 });
 

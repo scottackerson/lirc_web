@@ -9,7 +9,8 @@
     "lirc_node": "*",
     "swig": "0.13.5",
     "consolidate": "*",
-    "fast-csv": "*"
+    "fast-csv": "*",
+    "sqlite3": "*"
   },
   "devDependencies": {
     "mocha": "*",
