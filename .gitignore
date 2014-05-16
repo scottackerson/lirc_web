@@ -7,3 +7,4 @@ songs.csv
 /data/backup
 /data/*.log
 /data/*.db
+songs.db
