@@ -60,15 +60,16 @@ def update_song(track, artist_id, title):
 
 # load artists
 names = ["track", "artist", "title"] 
-artists = np.genfromtxt('../songs.csv', delimiter=',', names=names, dtype=None, usecols=("artist"))
+artists = np.genfromtxt('../songs.csv', delimiter='\t', names=names, dtype=None, usecols=("artist"))
 artists = unique(artists.tolist())
 
 # add to DB
 for item in artists:
 	add_artist(item)
+	sys.stdout.write("adding artist")
 
 # load or update songs
-songs = np.genfromtxt('../songs.csv', delimiter=',', names=names, dtype=None)
+songs = np.genfromtxt('../songs.csv', delimiter='\t', names=names, dtype=None)
 for item in songs:
 	# search for song to see if it already exists
 	results = search_song(item[2])
@@ -81,9 +82,10 @@ for item in songs:
 	if len(results) == 0:
 		#Find artist
 		artist_result = search_artist(item[1])
-		if len(artist_result) > 0:
-			add_song(item, artist_result[0])
-	
+
+	if len(artist_result) > 0:
+		add_song(item, artist_result[0])
+
 	# if we get multiple results, log the issue
 	if len(results) > 1:
 		logging.info('Found too many ' + item[2] + 's')

@@ -118,9 +118,9 @@
        $("#song-results").html("");
         $.getJSON('/apisongbyartistlist?artist_id='+artist_id, function(data){
         $.each(data,function(i, value){
-            //$("#song-results").append('<a href="#" id="getArtists" class="btn btn-primary btn-lg default" role="button" onClick="changeTrack('+value.track+')">'+value.title+'</a>');
-          $("#song-results").append('<button id="getArtists" class="btn btn-primary btn-lg default" role="button" data-toggle="modal" data-target="#'+value.track+'">'+value.title+'</button>');
-          $("#modals").append('<div class="modal fade" id="'+value.track+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel">'+value.title+' - <a href="#" onClick="changeTrack('+value.track+')">Play</a></h4></div><div class="modal-body"><dl class="dl-horizontal"><dt>Last Played</dt><dd>'+value.last_played+'</dd><dt># of times played</dt><dd>'+value.times_played+'</dd><dt>Rating</dt><dd>* * * *</dd></dl></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>');
+          $("#song-results").append('<a href="#" id="getArtists" class="btn btn-primary btn-lg default" role="button" onClick="changeTrack('+value.track+')">'+value.title+'</a>');
+          //$("#song-results").append('<button id="getArtists" class="btn btn-primary btn-lg default" role="button" data-toggle="modal" data-target="#'+value.track+'">'+value.title+'</button>');
+          //$("#modals").append('<div class="modal fade" id="'+value.track+'" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel">'+value.title+' - <a href="#" onClick="changeTrack('+value.track+')">Play</a></h4></div><div class="modal-body"><dl class="dl-horizontal"><dt>Last Played</dt><dd>'+value.last_played+'</dd><dt># of times played</dt><dd>'+value.times_played+'</dd><dt>Rating</dt><dd>* * * *</dd></dl></div><div class="modal-footer"><button type="button" class="btn btn-default" data-dismiss="modal">Close</button></div></div></div></div>');
             })
         });
       }
