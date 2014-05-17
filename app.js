@@ -54,7 +54,7 @@ var db = new sqlite3.Database('data/songs.db')
 
 // Get artist by alpha character
 function getArtistByCharacter(character, num_records, callback){
-   var statement = "SELECT artist_name, artist_id FROM artists WHERE artist_name LIKE '"+character+"%'"
+   var statement = "SELECT artist_name, artist_id FROM artists WHERE artist_name LIKE '"+character+"%' ORDER BY artist_name COLLATE NOCASE"
    console.log(statement);
    var artist_chars = db.all(statement,
       function(err, rows){
@@ -69,7 +69,7 @@ function getArtistByCharacter(character, num_records, callback){
 
 // Get song by artist id
 function getSongsByArtistID(artist_id, num_records, callback){
-   var statement = "SELECT song_id, track, title, rating, times_played, last_played FROM songs WHERE artist_id = "+artist_id
+   var statement = "SELECT song_id, track, title, rating, times_played, last_played FROM songs WHERE artist_id = "+artist_id +"ORDER BY title COLLATE NOCASE"
    console.log(statement);
    var songs = db.all(statement,
       function(err, rows){
