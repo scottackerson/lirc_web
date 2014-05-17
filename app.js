@@ -69,7 +69,7 @@ function getArtistByCharacter(character, num_records, callback){
 
 // Get song by artist id
 function getSongsByArtistID(artist_id, num_records, callback){
-   var statement = "SELECT song_id, track, title, rating, times_played, last_played FROM songs WHERE artist_id = "+artist_id +"ORDER BY title COLLATE NOCASE"
+   var statement = "SELECT song_id, track, title, rating, times_played, last_played FROM songs WHERE artist_id = "+artist_id +" ORDER BY title COLLATE NOCASE"
    console.log(statement);
    var songs = db.all(statement,
       function(err, rows){
