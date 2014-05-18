@@ -40,15 +40,32 @@ ul {
 .content-2-1 {
     float:left;
     width:400px;
-    padding-left:10px;
+    padding-left:0px;
 }
 
 .content-2-2 {
     float:left;
     width:400px;
-    padding-left: 10px;
+    padding-left: 0px;
 }
 
 .artist-name {
     width: 400px !important;
 }  
+
+.bs-sidebar .nav > .active > ul {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.btn-override {
+  border-top-right-radius: 0px !important;
+  border-top-left-radius: 0px !important;
+  border-bottom-right-radius: 0px !important;
+  border-bottom-left-radius: 0px !important;
+  border-color: #2C2D2E !important;
+  background-color: #2C2D2E !important;
+  color: #9B9B9B !important;
+}
+
+body { padding-bottom: 55px; }

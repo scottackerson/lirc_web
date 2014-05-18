@@ -10,7 +10,7 @@ var express = require('express'),
 
 // Precompile templates
 var JST = {
-    index: swig.compileFile(__dirname + '/templates/index.swig'),
+    index: swig.compileFile(__dirname + '/templates/artistlist.swig'),
     karaokeremote: swig.compileFile(__dirname + '/templates/karaokeremote.swig'),
     bysongnumber: swig.compileFile(__dirname + '/templates/bysongnumber.swig'),
     artistlist: swig.compileFile(__dirname + '/templates/artistlist.swig'),
@@ -50,7 +50,12 @@ if (process.env.NODE_ENV == 'test' || process.env.NODE_ENV == 'development') {
     }
 }
 
-var db = new sqlite3.Database('data/songs.db')
+try {
+  var db = new sqlite3.Database(__dirname + '/data/songs.db');
+  } catch(e) {
+    console.log("Could not load DB");
+  }
+
 
 // Get artist by alpha character
 function getArtistByCharacter(character, num_records, callback){
@@ -222,4 +227,4 @@ app.get('/songnumber/:track', function(req, res) {
 
 // Default port is 3000
 app.listen(3000);
-console.log("Open Source Universal Remote UI + API has started on port 3000.");
+console.log("Open Source Universal Remote UI + API has started on port 3000: " + Date() );
