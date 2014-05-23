@@ -24,28 +24,27 @@
  
   <body ontouchstart="">
     <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Mic Night!</a>
-        </div>
-        <div class="navbar-collapse collapse" style="height: 1px;">
-          <ul class="nav navbar-nav">
-            <li><a href="/bysongnumber">By Song Number</a></li>
-            <li><a href="/artistlist">By Artist</a></li>
-            <li><a href="/karaokeremote">Karaoke Remote</a></li>
-          </ul>
-        </div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Mic Night!</a>
+      </div>
+
+      <div class="navbar-collapse collapse" style="height: 1px;">
+        <ul class="nav navbar-nav">
+          <li><a href="/bysongnumber">By Song Number</a></li>
+          <li><a href="/artistlist">By Artist</a></li>
+          <li><a href="/karaokeremote">Karaoke Remote</a></li>
+        </ul>
       </div>
     </div>
 
     <div class="col-1">
-      <div class="btn-group-vertical">
+      <div class="btn-group-vertical" >
         <a href="#" id="getArtists" onClick= "getArtists('a')" class="btn btn-primary btn-lg btn-override btn-override" role="button">A</a>
         <a href="#" id="getArtists" onClick= "getArtists('b')" class="btn btn-primary btn-lg btn-override" role="button">B</a>
         <a href="#" id="getArtists" onClick= "getArtists('c')" class="btn btn-primary btn-lg btn-override" role="button">C</a>
@@ -76,7 +75,34 @@
     </div>
 
     <div class="content-2-1">
-      <div class="btn-group-vertical" id="artist-results"></div>
+      <div class="btn-group-vertical" id="artist-results">
+        <div class="thumbnail">
+          <div class="caption">
+            <h4>Last 5 songs</h4>
+            <ul class="list-group">
+              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">You Can't Touch This - MC HAMMER </a></li>
+              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">Santaria - Sublime </a></li>
+              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">Undone - Weezer </a></li>
+              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">New York - Frank Sinatra </a></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="thumbnail">
+          <div class="caption">
+            <h4>Most Played Songs</h4>
+            <ul class="list-group">
+              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">You Can't Touch This</a> <span class="badge">14</span></li>
+              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">Santaria</a><span class="badge">11</span></li>
+              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">Undone</a><span class="badge">11</span></li>
+              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">New York</a><span class="badge">9</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <button type="button" class="btn btn-default btn-lg">Do You Feel Luck?</button>
+
+      </div>
     </div>
 
     <div class="content-2-2" >
@@ -109,7 +135,7 @@
       
         $.getJSON('/apiartistlist?char='+character, function(data){
           $.each(data,function(i, value){
-            $("#artist-results").append('<a href="#" id="getArtists" onClick= "getSongs(' + value.artist_id + ')" class="btn btn-primary btn-lg btn-override default artist-name" role="button">'+value.artist_name+'</a>');
+            $("#artist-results").append('<a href="#" id="getArtists" onClick= "getSongs(' + value.artist_id + ')" class="btn btn-primary btn-lg btn-override default artist-name shadow-left" role="button">'+value.artist_name+'</a>');
           })
         });
       };
@@ -118,7 +144,7 @@
        $("#song-results").html("");
         $.getJSON('/apisongbyartistlist?artist_id='+artist_id, function(data){
         $.each(data,function(i, value){
-          $("#song-results").append('<a href="#" id="getArtists" class="btn btn-primary btn-lg btn-override default" role="button" onClick="changeTrack('+value.track+')">'+value.title+'</a>');
+          $("#song-results").append('<a href="#" id="getArtists" class="btn btn-primary btn-lg btn-override default shadow-left" role="button" onClick="changeTrack('+value.track+')">'+value.title+'</a>');
             })
         });
       }

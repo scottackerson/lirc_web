@@ -25,23 +25,22 @@
  
   <body ontouchstart="">
     <div class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/">Mic Night!</a>
-        </div>
-        <div class="navbar-collapse collapse" style="height: 1px;">
-          <ul class="nav navbar-nav">
-            <li><a href="/bysongnumber">By Song Number</a></li>
-            <li><a href="/artistlist">By Artist</a></li>
-            <li><a href="/karaokeremote">Karaoke Remote</a></li>
-          </ul>
-        </div>
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="/">Mic Night!</a>
+      </div>
+
+      <div class="navbar-collapse collapse" style="height: 1px;">
+        <ul class="nav navbar-nav">
+          <li><a href="/bysongnumber">By Song Number</a></li>
+          <li><a href="/artistlist">By Artist</a></li>
+          <li><a href="/karaokeremote">Karaoke Remote</a></li>
+        </ul>
       </div>
     </div>
 
