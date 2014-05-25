@@ -81,7 +81,7 @@
             <h4>Last 5 songs</h4>
             <ul class="list-group">
               {% for song in lastFive %}
-                  <li class="list-group-item"><span class="ellipsis"><a href="#" onClick="changeTrack('{{ song.title }})'">{{ song.title }}</a></span></li>
+                  <li class="list-group-item"><span class="ellipsis"><a href="#" onClick="changeTrack('{{ song.track }}')">{{ song.title }}</a></span></li>
               {% endfor %}
               </li>
             </ul>
@@ -93,7 +93,7 @@
             <h4>Most Played Songs</h4>
             <ul class="list-group">
               {% for song in mostPlayed %}
-                <li class="list-group-item"><span class="ellipsis"><a href="#" onClick="changeTrack('{{ song.title }})'">{{ song.title }}</a></span><span class="badge">{{ song.times_played }}</span></li>
+                <li class="list-group-item"><span class="ellipsis"><a href="#" onClick="changeTrack('{{ song.track }}')">{{ song.title }}</a></span><span class="badge">{{ song.times_played }}</span></li>
               {% endfor %}
             </ul>
           </div>
