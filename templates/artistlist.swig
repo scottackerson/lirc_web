@@ -36,8 +36,8 @@
 
       <div class="navbar-collapse collapse" style="height: 1px;">
         <ul class="nav navbar-nav">
-          <li><a href="/bysongnumber">By Song Number</a></li>
-          <li><a href="/artistlist">By Artist</a></li>
+          <li><a href="/catalog">Catalog</a></li>          
+          <li><a href="/bysongnumber">By Track</a></li>
           <li><a href="/karaokeremote">Karaoke Remote</a></li>
         </ul>
       </div>
@@ -73,34 +73,33 @@
         <a href="#" id="getArtists" onClick= "getArtists('z')" class="btn btn-primary btn-lg btn-override" role="button">Z</a>
       </div>
     </div>
-
+         
     <div class="content-2-1">
       <div class="btn-group-vertical" id="artist-results">
         <div class="thumbnail">
           <div class="caption">
             <h4>Last 5 songs</h4>
             <ul class="list-group">
-              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">You Can't Touch This - MC HAMMER </a></li>
-              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">Santaria - Sublime </a></li>
-              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">Undone - Weezer </a></li>
-              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">New York - Frank Sinatra </a></li>
+              {% for song in lastFive %}
+                  <li class="list-group-item"><span class="ellipsis"><a href="#" onClick="changeTrack('{{ song.title }})'">{{ song.title }}</a></span></li>
+              {% endfor %}
+              </li>
             </ul>
           </div>
         </div>
-
+          
         <div class="thumbnail">
           <div class="caption">
             <h4>Most Played Songs</h4>
             <ul class="list-group">
-              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">You Can't Touch This</a> <span class="badge">14</span></li>
-              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">Santaria</a><span class="badge">11</span></li>
-              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">Undone</a><span class="badge">11</span></li>
-              <li class="list-group-item"><a href="#" id="getArtists" onClick= "changeTrack('123')">New York</a><span class="badge">9</span></li>
+              {% for song in mostPlayed %}
+                <li class="list-group-item"><span class="ellipsis"><a href="#" onClick="changeTrack('{{ song.title }})'">{{ song.title }}</a></span><span class="badge">{{ song.times_played }}</span></li>
+              {% endfor %}
             </ul>
           </div>
         </div>
 
-        <button type="button" class="btn btn-default btn-lg">Do You Feel Luck?</button>
+        <button type="button" class="btn btn-default btn-lg" onClick="playRandom()">Do You Feel Lucky?</button>
 
       </div>
     </div>
@@ -110,7 +109,6 @@
     </div>
 
     <div id="modals">
-
     </div>
 
     <script src="/js/compiled/app.js" type="text/javascript" charset="utf-8"></script>
@@ -152,6 +150,12 @@
       function changeTrack(track_id){
         $.get('/songnumber/'+track_id, function(data){
           console.log('get successful');
+        });
+      }
+
+      function playRandom(){
+        $.get('/playrandomsong', function(data){
+          console.log('played random track');
         });
       }
     </script>

@@ -36,8 +36,8 @@
 
       <div class="navbar-collapse collapse" style="height: 1px;">
         <ul class="nav navbar-nav">
-          <li><a href="/bysongnumber">By Song Number</a></li>
-          <li><a href="/artistlist">By Artist</a></li>
+          <li><a href="/catalog">Catalog</a></li>          
+          <li><a href="/bysongnumber">By Track</a></li>
           <li><a href="/karaokeremote">Karaoke Remote</a></li>
         </ul>
       </div>

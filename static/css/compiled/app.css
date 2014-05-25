@@ -41,6 +41,7 @@ ul {
     float:left;
     width:400px;
     padding-left:10px;
+    text-overflow: ellipsis;
 }
 
 .content-2-2 {
@@ -83,5 +84,21 @@ body { padding-bottom: 55px; }
   letter-spacing: 1px;
 }
 
+.ellipsis {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;     /** IE6+, Firefox 7+, Opera 11+, Chrome, Safari **/
+  -o-text-overflow: ellipsis;  /** Opera 9 & 10 **/
+  width: 300px; /* note that this width will have to be smaller to see the effect */
+}
 
-
+.columnar {
+  width:1024px;height:1800px;
+  -webkit-column-count: 3;
+  -moz-column-count: 3;
+  column-count: 3;
+  -webkit-column-gap: 10px;
+  -moz-column-gap: 10px;
+  column-gap: 10px; 
+}
