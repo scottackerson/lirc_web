@@ -48,10 +48,10 @@
     <div class="columnar">
     
       {% for song in songs %}
-        <li class="list-group-item"><span class="ellipsis"><a href="#" onClick="changeTrack('{{ song.track }}')">{{ song.artist_name }} - {{ song.title }}</a></span></li>
+        <li class="list-group-item"><span class="ellipsis"><a onClick="changeTrack('{{ song.track }}')">{{ song.artist_name }} - {{ song.title }}</a></span></li>
       {% endfor %}
     </div>
-    
+
     <script src="/js/compiled/app.js" type="text/javascript" charset="utf-8"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
     <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
